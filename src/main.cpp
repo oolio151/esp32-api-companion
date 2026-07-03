@@ -1,18 +1,33 @@
 #include <Arduino.h>
+#include <WiFi.h>
+#include <WiFiManager.h>   // https://github.com/tzapu/WiFiManagerv if you need the docs
+#include <WebServer.h>
+#include <ArduinoJson.h>
+#include "pins.h"
 
-// put function declarations here:
-int myFunction(int, int);
+WebServer server(80);
+
 
 void setup() {
-  // put your setup code here, to run once:
-  int result = myFunction(2, 3);
+  Serial.begin(115200);
+  delay(1000);
+
+  WiFiManager wm;
+
+  // wm.resetSettings();
+
+  bool connected = wm.autoConnect("ESP32-Setup");
+
+  if (!connected) {
+    Serial.println("Failed to connect and hit timeout");
+    ESP.restart();
+  }
+
+  Serial.println("Connected!");
+  Serial.print("IP address: ");
+  Serial.println(WiFi.localIP());
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-}
-
-// put function definitions here:
-int myFunction(int x, int y) {
-  return x + y;
+  delay(1000);
 }
