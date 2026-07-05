@@ -3,10 +3,14 @@
 #include <WiFiManager.h>   // https://github.com/tzapu/WiFiManagerv if you need the docs
 #include <WebServer.h>
 #include <ArduinoJson.h>
+
 #include "pins.h"
+#include "handlers.h"
+
 
 WebServer server(80);
 
+bool pinsInUse[39] = {false};
 
 void setup() {
   Serial.begin(115200);
@@ -14,7 +18,7 @@ void setup() {
 
   WiFiManager wm;
 
-  // wm.resetSettings();
+  // wm.resetSettings(); // uncomment for testing
 
   bool connected = wm.autoConnect("ESP32-Setup");
 
