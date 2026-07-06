@@ -1,5 +1,7 @@
 #pragma once
 
+// defining the pins of the esp32 for later use
+
 const int digitalPins[] = {4, 5, 16, 17, 18, 19, 21, 22, 23};
 
 const int adcPins[] = {32, 33, 34, 35, 36, 39}; //using adc1 since wifi can cause conflicts with adc2, 
@@ -13,7 +15,7 @@ const int spiPins[] = {18, 19, 23, 5};
 const int i2cPins[] = {21, 22};
 
 
-const int unsafePins[] = {6, 7, 8, 10, 11}; //pretty much off limits
+const int unsafePins[] = {6, 7, 8, 10, 11}; //pretty much off limit pins for the esp32
 const int cautionPins[] = {0, 2, 4, 5, 12, 15}; //strapping pins, dont pull them weird on boot and ur good
 
 enum class PinType {

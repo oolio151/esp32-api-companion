@@ -1,6 +1,6 @@
 #include <Arduino.h>
 #include <WiFi.h>
-#include <WiFiManager.h>   // https://github.com/tzapu/WiFiManagerv if you need the docs
+#include <WiFiManager.h>   // https://github.com/tzapu/WiFiManager if you need the docs
 #include <WebServer.h>
 #include <ArduinoJson.h>
 
@@ -10,9 +10,11 @@
 
 WebServer server(80);
 
-bool pinsInUse[39] = {false};
+int8_t pinsInUse[40] = {0}; // 0 means not in use, 1 means in use, -1 means unsafe
 
 void setup() {
+  for (int pin : unsafePins) pinsInUse[pin] = -1;
+
   Serial.begin(115200);
   delay(1000);
 
@@ -24,14 +26,23 @@ void setup() {
 
   if (!connected) {
     Serial.println("Failed to connect and hit timeout");
-    ESP.restart();
+    //ESP.restart();
+  } else {
+    Serial.println("Connected!");
+    Serial.print("IP address: ");
+    Serial.println(WiFi.localIP());
+
+    server.on("/ping", HTTP_GET, handlePing);
+    server.begin();
+    Serial.println("HTTP server started.");
   }
 
-  Serial.println("Connected!");
-  Serial.print("IP address: ");
-  Serial.println(WiFi.localIP());
+  
+
+
 }
 
 void loop() {
-  delay(1000);
+  server.handleClient();
 }
+

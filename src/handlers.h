@@ -8,3 +8,4 @@ void handleListPins();
 void handleGetPin();
 void handleSetMode();
 void handleSetValue();
+void handlePing();
