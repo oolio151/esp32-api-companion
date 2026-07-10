@@ -9,3 +9,4 @@ void handleGetPin();
 void handleSetMode();
 void handleSetValue();
 void handlePing();
+void handleSetup();

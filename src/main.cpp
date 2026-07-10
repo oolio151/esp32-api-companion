@@ -32,9 +32,7 @@ void setup() {
     Serial.print("IP address: ");
     Serial.println(WiFi.localIP());
 
-    server.on("/ping", HTTP_GET, handlePing);
-    server.begin();
-    Serial.println("HTTP server started.");
+    handleSetup();
   }
 
   
