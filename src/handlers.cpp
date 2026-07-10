@@ -21,6 +21,11 @@ void handleGetPin() {
   }
   int pin = server.arg("id").toInt();
 
+  if (!isValidPin(pin, PinType::DIGITAL)) {
+    sendJsonError(400, "Invalid pin number");
+    return;
+  }
+
   JsonDocument doc;
   doc["pin"] = pin;
   doc["state"] = digitalRead(pin);
