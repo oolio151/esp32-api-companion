@@ -3,6 +3,7 @@
 
 extern WebServer server;
 extern String pinModes[];
+extern int8_t pinsInUse[];
 
 void handleListPins();
 void handleGetPin();

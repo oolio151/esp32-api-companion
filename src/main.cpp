@@ -10,7 +10,7 @@
 
 WebServer server(80);
 
-int8_t pinsInUse[40] = {0}; // 0 means not in use, 1 means in use, -1 means unsafe
+int8_t pinsInUse[40] = {0}; // 0 means not in use, 1 means input, 2 means output, -1 means unsafe
 
 void setup() {
   for (int pin : unsafePins) pinsInUse[pin] = -1;
