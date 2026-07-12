@@ -7,7 +7,8 @@ extern int8_t pinsInUse[];
 
 void handleListPins();
 void handleGetPin();
-void handleSetMode();
 void handleSetValue();
 void handlePing();
 void handleSetup();
+void handleSetPinState();
+void handleSetPinValueDigital();
